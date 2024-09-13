@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti❤️</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        .flower {
+            position: relative;
+            width: 150px;
+            height: 150px;
+        }
+
+        .petal {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-color: pink;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            margin-top: -40px;
+            margin-left: -40px;
+            transform-origin: bottom right;
+            cursor: pointer;
+        }
+
+        .petal:hover {
+            background-color: #ff99cc;
+        }
+
+        .petal:nth-child(1) {
+            transform: rotate(0deg) translate(60px) rotate(0deg);
+        }
+
+        .petal:nth-child(2) {
+            transform: rotate(60deg) translate(60px) rotate(-60deg);
+        }
+
+        .petal:nth-child(3) {
+            transform: rotate(120deg) translate(60px) rotate(-120deg);
+        }
+
+        .petal:nth-child(4) {
+            transform: rotate(180deg) translate(60px) rotate(-180deg);
+        }
+
+        .petal:nth-child(5) {
+            transform: rotate(240deg) translate(60px) rotate(-240deg);
+        }
+
+        .petal:nth-child(6) {
+            transform: rotate(300deg) translate(60px) rotate(-300deg);
+        }
+
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            background-color: yellow;
+            border-radius: 50%;
+            margin-top: -20px;
+            margin-left: -20px;
+        }
+
+        /* Estilos para la caja modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 2px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .modal img {
+            width: 300px;
+            height: auto;
+        }
+
+        .modal p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        /* Fondo oscuro cuando la modal está activa */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        /* Botón de cierre */
+        .close-btn {
+            margin-top: 10px;
+            cursor: pointer;
+            padding: 5px 10px;
+            background-color: #ff6666;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .close-btn:hover {
+            background-color: #ff3333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Flor -->
+    <div class="flower">
+        <div class="petal" data-message="Feliz aniversario, Mami🥰❤️ Eres Mi Todo🤗, mi regalo más grande🎁" data-img="img/5.jpg"></div>
+        <div class="petal" data-message="Gracias por ser una Novia tan Maravillosa🥰❤️" data-img="img/1.jpg"></div>
+        <div class="petal" data-message="Recuerdas esa noche?🥰" data-img="img/3.jpg"></div>
+        <div class="petal" data-message="Gracias por estar siempre a mi lado🥰❤️" data-img="img/6.jpg"></div>
+        <div class="petal" data-message="Juntos hemos creado recuerdos inolvidables💕" data-img="img/2.jpg"></div>
+        <div class="petal" data-message="Te Amoo hoy y siempre, Mi Ixche🥰❤️" data-img="img/4.jpg"></div>
+        <div class="center"></div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay"></div>
+    <div class="modal">
+        <img id="modal-image" src="" alt="Imagen de la flor">
+        <p id="modal-message"></p>
+        <button class="close-btn">Cerrar</button>
+    </div>
+
+    <script>
+        // Obtener los pétalos
+        const petals = document.querySelectorAll('.petal');
+        const modal = document.querySelector('.modal');
+        const modalOverlay = document.querySelector('.modal-overlay');
+        const modalImage = document.getElementById('modal-image');
+        const modalMessage = document.getElementById('modal-message');
+        const closeBtn = document.querySelector('.close-btn');
+
+        // Agregar eventos de clic a cada pétalo
+        petals.forEach(petal => {
+            petal.addEventListener('click', function () {
+                const message = this.getAttribute('data-message');
+                const imgSrc = this.getAttribute('data-img');
+
+                // Mostrar mensaje e imagen en la modal
+                modalMessage.textContent = message;
+                modalImage.src = imgSrc;
+
+                // Mostrar la modal y la capa de fondo
+                modal.style.display = 'block';
+                modalOverlay.style.display = 'block';
+            });
+        });
+
+        // Cerrar la modal
+        closeBtn.addEventListener('click', function () {
+            modal.style.display = 'none';
+            modalOverlay.style.display = 'none';
+        });
+
+        // Cerrar modal al hacer clic en el fondo oscuro
+        modalOverlay.addEventListener('click', function () {
+            modal.style.display = 'none';
+            modalOverlay.style.display = 'none';
+        });
+    </script>
+
+</body>
+
+</html>
